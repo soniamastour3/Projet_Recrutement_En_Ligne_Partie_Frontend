@@ -1,0 +1,57 @@
+
+<div class="content-body">
+    <div class="container-fluid">
+<div class="row">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">List Entreprise</h4>
+        
+    </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-responsive-md">
+                    <thead>
+                        <tr>
+                            <th><strong>nom</strong></th>
+                            <th><strong>speacialté</strong></th>
+                            <th><strong>coordonées</strong></th>
+                            <th><strong>logo</strong></th>
+                            <th><strong>validation</strong></th>
+                            <th><strong>action</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                            @for(entreprise of entreprises; track entreprise.idEntreprise; let index = $index){
+                        <tr>
+                            <td>{{entreprise.nom}}</td>
+                            <td>{{entreprise.specialite}}</td>
+                            <td>{{entreprise.coordonees}}</td>
+                            <td>{{entreprise.logo}}</td>
+                            <td>{{ entreprise.validated ? 'Oui' : 'Non' }}</td>
+                                 
+                            <td>
+                                <div class="d-flex">
+                                    <a [routerLink]="['/home/detailEntreprise', entreprise.idEntreprise]" class="btn btn-primary shadow btn-xs sharp me-1"><i class="bi bi-eye"></i></a>
+                                    <a (click)="deleteEntreprise(entreprise.idEntreprise)" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+               
+             
+            </div>
+               </div>
+            </div>
+</div>
+
+
+
+

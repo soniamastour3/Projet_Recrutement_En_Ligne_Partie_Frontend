@@ -1,0 +1,176 @@
+
+<div class="content-body">
+    <div class="container-fluid">
+<div class="row">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">List Offres d'Emploi</h4>
+        
+    </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-responsive-md">
+                    <thead>
+                        <tr>
+                            <th><strong>titre</strong></th>
+                            <th><strong>description</strong></th>
+                            <th><strong>type du Contrat</strong></th>
+                            <th><strong>secteur de l'offre</strong></th>
+                            <th><strong>adresse</strong></th>
+                            <th><strong>reférence candiadature</strong></th>
+                            <th><strong>nom entreprise</strong></th>
+                            <th><strong>validation</strong></th>
+                            <th><strong>action</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                            @for(offreEmploi of offresEmplois; track offreEmploi.idOffre; let index = $index){
+                        <tr>
+                            <td>{{offreEmploi.titre}}</td>
+                            <td>{{offreEmploi.description}}</td>
+                            <td>{{offreEmploi.typeContrat}}</td>
+                            <td>{{offreEmploi.secteur}}</td>
+                            <td>{{offreEmploi.adresse}}</td>
+                            <td>{{offreEmploi.candidature.ref}}</td>
+                            <td>{{offreEmploi.entreprise.nom}}</td>
+                            <td>{{offreEmploi.validated ? 'Oui' : 'Non'}}</td>
+                                 
+                            <td>
+                                <div class="d-flex">
+                                    <a [routerLink]="['/home/detailOffre', offreEmploi.idOffre]" class="btn btn-primary shadow btn-xs sharp me-1"><i class="bi bi-eye"></i></a>
+                                    <a (click)="deleteOffreEmploi(offreEmploi.idOffre)" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                    <a class="btn btn-danger shadow btn-xs sharp" data-bs-toggle="modal" (click)="offreById(offreEmploi.idOffre)" data-bs-target=".bd-example-modal-lg"><i class="fas fa-pencil-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+              <!-- Large modal -->
+              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="row">
+                         <div class="col-lg-12">
+                             <div class="card">
+                                 <div class="card-header">
+                                     <h4 class="card-title">Update Offre Emploi</h4>
+                                 </div>
+                                 <div class="card-body">
+                                     <div class="form-validation">
+                                         <form [formGroup]="offreForm"  class="needs-validation" novalidate>
+                                             <div class="row">
+                                                 <div class="col-xl-6">
+                                                     <div class="mb-3 row">
+                                                         <label class="col-lg-4 col-form-label" for="validationCustom01">Titre
+                                                             <span class="text-danger">*</span>
+                                                         </label>
+                                                         <div class="col-lg-6">
+                                                             <input type="text" class="form-control" formControlName="titre" id="validationCustom01"  placeholder="Enter a title.." required>
+                                                             <div class="invalid-feedback">
+                                                                 Please enter a title.
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="mb-3 row">
+                                                         <label class="col-lg-4 col-form-label" for="validationCustom02">Description<span
+                                                                 class="text-danger">*</span>
+                                                         </label>
+                                                         <div class="col-lg-6">
+                                                             <input type="text" class="form-control" formControlName="description" id="validationCustom02"  placeholder="Description.." required>
+                                                             <div class="invalid-feedback">
+                                                                 Please enter a Description.
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="mb-3 row">
+                                                        <label class="col-lg-4 col-form-label" for="validationCustom03">Type de contrat<span
+                                                                class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" formControlName="typeContrat" id="validationCustom03"  placeholder="Description.." required>
+                                                            <div class="invalid-feedback">
+                                                                Please enter a Description.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="mb-3 row">
+                                                         <label class="col-lg-4 col-form-label" for="validationCustom04">Secteur
+                                                             <span class="text-danger">*</span>
+                                                         </label>
+                                                         <div class="col-lg-6">
+                                                             <input type="text" class="form-control" formControlName="secteur" id="validationCustom04" placeholder="Secteur.." required>
+                                                             <div class="invalid-feedback">
+                                                                 Please enter a sector.
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="mb-3 row">
+                                                         <label class="col-lg-4 col-form-label" for="validationCustom05">Adresse <span
+                                                                 class="text-danger">*</span>
+                                                         </label>
+                                                         <div class="col-lg-6">
+                                                             <input type="text" class="form-control" formControlName="adresse" id="validationCustom05"  rows="5" placeholder="Adresse" required/>
+                                                             <div class="invalid-feedback">
+                                                                 Please enter a Adress.
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-xl-6">
+                                                     <div class="mb-3 row">
+                                                         <label class="col-lg-4 col-form-label" for="validationCustom06">Nom Entreprise
+                                                             <span class="text-danger">*</span>
+                                                         </label>
+                                                         <div class="col-lg-6">
+                                                             <input type="text" class="form-control" formControlName="entreprise.nom" id="validationCustom06" placeholder="Nom Entreprise" required/>
+                                                             <div class="invalid-feedback">
+                                                                 Please enter a name of entreprise.
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="mb-3 row">
+                                                         <label class="col-lg-4 col-form-label" for="validationCustom07">Référence Candidature
+                                                             <span class="text-danger">*</span>
+                                                         </label>
+                                                         <div class="col-lg-6">
+                                                             <input type="text" class="form-control" formControlName="candiadature.ref" id="validationCustom07" placeholder="référence candidature" required>
+                                                             <div class="invalid-feedback">
+                                                                 Please enter a reference of candidature.
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     
+                                                 </div>
+                                             </div>
+                                             <button type="submit" (click)="onSubmit()" [disabled]="offreForm.invalid" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                        
+                                         </form>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         </div>
+                     
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                            </div>
+                    </div>
+                </div>
+             </div> 
+             
+            </div>
+               </div>
+            </div>
+</div>
+
+
+
+

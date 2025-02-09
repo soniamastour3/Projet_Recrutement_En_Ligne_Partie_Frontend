@@ -1,0 +1,56 @@
+
+<div class="content-body">
+    <div class="container-fluid">
+<div class="row">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">List Candidature</h4>
+        
+    </div>
+    
+        <div class="card-body">
+            <div class="table-responsive">
+                @if(!candidature) {
+                <table class="table table-responsive-md">
+                    <thead>
+                        <tr>
+                            <th><strong>Etat</strong></th>
+                            <th><strong>Score Test</strong></th>
+                            <th><strong>Ref</strong></th>
+                            <th><strong>Candidat</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                       
+                            @for(candidature of candidatures; track candidature.idCandidature; let index = $index){
+                               
+                                <tr >
+                            <td>{{candidature.etat}}</td>
+                            <td>{{candidature.scoreTest}}</td>
+                            <td>{{candidature.ref}}</td>
+                            <td>{{candidature.candidat?.nom}}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <a  [routerLink]="['/home/detailCandidature', candidature.idCandidature]" class="btn btn-primary shadow btn-xs sharp me-1"><i class="bi bi-eye"></i></a>
+                                    <a (click)="deleteCandidature(candidature.idCandidature)" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>}
+                    </tbody>
+                </table>}
+            </div>
+        </div>
+    </div>
+
+               
+             
+            </div>
+               </div>
+            </div>
+</div>
+
+
+
+

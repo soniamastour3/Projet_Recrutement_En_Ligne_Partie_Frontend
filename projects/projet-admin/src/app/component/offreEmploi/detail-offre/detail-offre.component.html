@@ -1,0 +1,84 @@
+<div class="content-body">
+    <div class="container-fluid">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Detail Offre Emploi</h4>
+            </div>
+           
+            <div class="card-body">
+                <div class="form-validation">
+                    @if(offreEmploi){
+                    <form class="needs-validation" novalidate >
+                        
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label" for="validationCustom01"><strong>Titre</strong>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            {{ offreEmploi.titre }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label" for="validationCustom02"><strong>Description</strong> 
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            {{ offreEmploi.description }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label" for="validationCustom02"><strong>Secteur de l'offre</strong> 
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            {{ offreEmploi.secteur }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label" for="validationCustom02"><strong>Adresse</strong> 
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            {{ offreEmploi.adresse }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label" for="validationCustom03"><strong>Réference candidature</strong>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            {{ offreEmploi.candidature.ref}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label" for="validationCustom03"><strong>Nom Entreprise</strong>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            {{ offreEmploi.entreprise.nom}}
+                                        </div>
+                                    </div>
+                                </div>
+                                @if(!offreEmploi.validated){
+                                    <button (click)="validateOffreEmploi(offreEmploi.idOffre)">
+                                        Valider
+                                    </button>  }
+                            </div>
+                        </div>
+                    </form>}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
